@@ -2,5 +2,6 @@
     <span class="flext-auto">Name: {{product.name}}</span>
     <span class="flext-auto" *ngIf="product.qty"> Qty: {{product.qty}}</span>
     <button (click)="addToCart()">{{mode===1?'Add To Cart':'+'}}</button>
+    <button *ngIf="mode === 2" (click)="remove()">X</button>
 
 </div>

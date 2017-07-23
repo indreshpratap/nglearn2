@@ -17,7 +17,7 @@
         Total {{cart.length}} products in your cart.
         <button *ngIf="cart.length">View Cart</button>
         <div *ngFor="let c of cart">
-             <app-product-detail [mode]="2" [product]="c" (onAddToCart)="pushToCart($event)"></app-product-detail>
+             <app-product-detail [mode]="2" [product]="c" (onAddToCart)="pushToCart($event)" (onRemove)="removeFromCart($event)"></app-product-detail>
         </div>
     </div>
 </div>

@@ -47,3 +47,12 @@ For loop
 <h2>Available Products</h2>
 <app-product-listing></app-product-listing>
 
+<h2>Life Cycle hooks</h2>
+<button (click)="toogleHooks()"> Toogle Hook</button>
+<button (click)="changeHookTitle()"> Change Title</button>
+<button (click)="changeHookDesc()"> Change Description</button>
+<button (click)="increaseSpecialProductQty()"> Increase Qty</button>
+<br>
+<app-hooks *ngIf="showHook" [product]="specialProduct" [title]="hookTitle" [desc]="hookDescription"></app-hooks>
+
+
