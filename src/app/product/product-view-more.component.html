@@ -1,0 +1,9 @@
+<div class="flext-auto">
+    <span class="flext-auto">Name: {{product.name}}</span>
+    <!-- <span class="flext-auto" *ngIf="product.qty"> Qty: {{product.qty}}</span> -->
+   <pre>{{product.description}}</pre>
+
+   <a [routerLink]="['/products/view-spec',product.id]">View Specification</a>
+   
+
+</div>

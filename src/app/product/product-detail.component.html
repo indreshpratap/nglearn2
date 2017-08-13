@@ -3,5 +3,7 @@
     <span class="flext-auto" *ngIf="product.qty"> Qty: {{product.qty}}</span>
     <button (click)="addToCart()">{{mode===1?'Add To Cart':'+'}}</button>
     <button *ngIf="mode === 2" (click)="remove()">X</button>
+    <a [routerLink]="['./view-more',product.id,product.name]">View More</a>
+    <!-- <a [routerLink]="['./view-spec',product.id]">View Specification</a> -->
 
 </div>

@@ -1,0 +1,10 @@
+<div class="flext-auto">
+    <span class="flext-auto">Name: {{product.name}}</span>
+    <!-- <span class="flext-auto" *ngIf="product.qty"> Qty: {{product.qty}}</span> -->
+ <b>Product Specification</b>
+    <pre>{{product.specification}}</pre>
+
+    <button (click)="backToView()">Go to view more programmatically</button>
+     <a [routerLink]="['/products/view-more',product.id,product.name]">View More by link</a> 
+
+</div>
