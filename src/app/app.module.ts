@@ -15,16 +15,29 @@ import { ProductViewMoreComponent } from "app/product/product-view-more.componen
 
 import 'rxjs/Rx';
 import { ProductViewSpecComponent } from "app/product/product-spec-more.component";
+import { UserInfoComponent } from "app/user/user-info.component";
+import { AuthService } from "app/gaurds/auth.service";
+import { UserGuard } from "app/gaurds/user.gaurd";
+import { AdminGuard } from "app/gaurds/admin.gaurd";
+
 const routes: Routes = [
   { path: "", redirectTo: "/products", pathMatch: "full" },
-  { path: "products", component: ProductListingComponent,
-  children:[
-    {path:"view-more/:id/:name",component:ProductViewMoreComponent},
-    {path:"view-spec/:id",component:ProductViewSpecComponent},
-  ]
-},
+  {
+    path: "products", component: ProductListingComponent,
+    canActivate: [AdminGuard],
+    children: [
+      { path: "view-more/:id/:name", component: ProductViewMoreComponent },
+      { path: "view-spec/:id", component: ProductViewSpecComponent },
+    ]
+  },
   { path: "second", component: SecondComponent },
-  { path: "aboutus", component: AboutComponent },
+  { path: "aboutus", component: AboutComponent,canActivate:[UserGuard] },
+  {
+    path: "user", canActivate:[UserGuard],
+    children: [
+      { path: "info", component: UserInfoComponent }
+    ]
+  },
   { path: "**", redirectTo: "/products", pathMatch: "full" },
 ];
 
@@ -38,7 +51,8 @@ const routes: Routes = [
     ApprootComponent,
     AboutComponent,
     ProductViewMoreComponent,
-    ProductViewSpecComponent
+    ProductViewSpecComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +61,7 @@ const routes: Routes = [
     // registering routes and importing the Router module
     RouterModule.forRoot(routes)
   ],
-  providers: [ProductService],
+  providers: [ProductService, AuthService, UserGuard, AdminGuard],
   // bootstrap: [AppComponent]
   bootstrap: [ApprootComponent]
 })

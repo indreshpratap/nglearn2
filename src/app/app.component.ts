@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'app works! changed';
   description = "This is description";
   disableEmail = true;
   email = 'test@gmail.com';

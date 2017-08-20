@@ -1,8 +1,22 @@
 <div id="item" class="linkitem active"></div>
 
-<a routerLinkActive="active" class="link active"  routerLink="/products">Products</a>
-<a routerLinkActive="active" class="link active"  routerLink="/second">Second</a>
-<a routerLinkActive="active" class="link active"  routerLink="/aboutus">About us</a>
-<br/>
+<a routerLinkActive="active" class="link active" routerLink="/products">Products</a>
+<a routerLinkActive="active" class="link active" routerLink="/second">Second</a>
+<a routerLinkActive="active" class="link active" routerLink="/aboutus">About us</a>
+<a routerLinkActive="active" class="link active" routerLink="/user/info">User Info</a>
+<button (click)="login(1)">Login As Admin</button>
+<button (click)="login(2)">Login As User</button>
+<button (click)="logout()">Logout</button>
 
+<br/>
+<input type="text" [disabled]="!isadmin"/>
+
+<button type="button" [disabled] = "!canEdit">Edit</button>
+<button type="button" [disabled] = "!canDelete">Delete</button>
+
+Computed Can Delete: {{canDelete}} Can Edit: {{canEdit}} <br/>
+ Can Delete: {{candelete}} Can Edit: {{canedit}} <br/>
+
+
+<button (click)="tooglePermission()">Toogle permission</button>
 <router-outlet></router-outlet>
