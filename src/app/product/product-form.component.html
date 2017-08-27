@@ -1,0 +1,20 @@
+<h3>Product Form</h3>
+<b>Two way binding</b>
+<form #form="ngForm" novalidate>
+<input type="text" name="test" [(ngModel)]="product.name">
+<br>
+<input type="text"  name="productname" [ngModel]="product.name"/>
+<input type="text" required email name="description" [ngModel]="product.description"/>
+<span *ngIf="form.controls['description']?.errors">Description is required</span>
+<!-- <span *ngIf="form.controls['description2']?.errors?.email">Not a valid email</span> -->
+</form>
+<button #btn  (click)="doSave(btn,form)">Save</button>
+<pre>
+    Product
+    {{product |json}}
+    Form Data
+    {{form.value|json}}
+    Form Errors
+   Invalid: {{form.invalid}}
+   {{form.controls['description']?.errors|json}}
+</pre>

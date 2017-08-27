@@ -19,6 +19,7 @@ import { UserInfoComponent } from "app/user/user-info.component";
 import { AuthService } from "app/gaurds/auth.service";
 import { UserGuard } from "app/gaurds/user.gaurd";
 import { AdminGuard } from "app/gaurds/admin.gaurd";
+import { ProductFormComponent } from "app/product/product-form.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/products", pathMatch: "full" },
@@ -28,6 +29,7 @@ const routes: Routes = [
     children: [
       { path: "view-more/:id/:name", component: ProductViewMoreComponent },
       { path: "view-spec/:id", component: ProductViewSpecComponent },
+      { path: "edit/:id", component: ProductFormComponent },
     ]
   },
   { path: "second", component: SecondComponent },
@@ -52,7 +54,8 @@ const routes: Routes = [
     AboutComponent,
     ProductViewMoreComponent,
     ProductViewSpecComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    ProductFormComponent 
   ],
   imports: [
     BrowserModule,
