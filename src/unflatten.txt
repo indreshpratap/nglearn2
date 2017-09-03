@@ -1,0 +1,82 @@
+testTreeConversion() {
+    let res = [
+      {
+        "trustid": 1, "code": "AD", "label": "Application For Demo", "linkcode": 0, "balancesheet": true,
+        "serno": 3, "groupid": 19, "depth": 2, "nodetype": 0
+      },
+      { "trustid": 1, "code": "AF", "label": "Application of Fund", "linkcode": 0, "balancesheet": true, "serno": 2, "groupid": 4, "depth": 2, "nodetype": 1 },
+      { "trustid": 1, "code": "do", "label": "dotest", "linkcode": 0, "balancesheet": true, "serno": 4, "groupid": 31, "depth": 2, "nodetype": 0 },
+      { "trustid": 1, "code": "SF", "label": "Source of Fund", "linkcode": 0, "balancesheet": true, "serno": 1, "groupid": 1, "depth": 2, "nodetype": 1 },
+      { "trustid": 1, "code": "MF", "label": "Member of Fund", "linkcode": 1, "balancesheet": true, "serno": 1, "groupid": 2, "depth": 3, "nodetype": 0 },
+      { "trustid": 1, "code": "RE", "label": "Retained Earnings", "linkcode": 1, "balancesheet": true, "serno": 2, "groupid": 3, "depth": 3, "nodetype": 0 },
+      { "trustid": 1, "code": "ME", "label": "Miscellaneous Expenditure", "linkcode": 2, "balancesheet": true, "serno": 4, "groupid": 17, "depth": 3, "nodetype": 1 },
+      { "trustid": 1, "code": "IV", "label": "Investment", "linkcode": 2, "balancesheet": true, "serno": 1, "groupid": 5, "depth": 3, "nodetype": 0 },
+      { "trustid": 1, "code": "AM", "label": "Application Money", "linkcode": 2, "balancesheet": true, "serno": 2, "groupid": 6, "depth": 3, "nodetype": 0 },
+      { "trustid": 1, "code": "CA", "label": "Net Current Assets", "linkcode": 2, "balancesheet": true, "serno": 3, "groupid": 7, "depth": 3, "nodetype": 1 },
+      { "trustid": 1, "code": "CA", "label": "Current Assets", "linkcode": 7, "balancesheet": true, "serno": 1, "groupid": 8, "depth": 4, "nodetype": 1 },
+      { "trustid": 1, "code": "CL", "label": "Current Liabilites", "linkcode": 8, "balancesheet": true, "serno": 2, "groupid": 14, "depth": 4, "nodetype": 1 },
+      { "trustid": 1, "code": "PM", "label": "Premium", "linkcode": 9, "balancesheet": true, "serno": 1, "groupid": 18, "depth": 4, "nodetype": 0 },
+      { "trustid": 1, "code": "ID", "label": "Interest due not Received", "linkcode": 8, "balancesheet": true, "serno": 1, "groupid": 9, "depth": 5, "nodetype": 0 },
+      { "trustid": 1, "code": "IR", "label": "Others Receivables", "linkcode": 10, "balancesheet": true, "serno": 5, "groupid": 13, "depth": 5, "nodetype": 0 },
+      { "trustid": 1, "code": "BB", "label": "Bank Balance", "linkcode": 10, "balancesheet": true, "serno": 4, "groupid": 12, "depth": 5, "nodetype": 0 },
+      { "trustid": 1, "code": "TR", "label": "TDS Receivable", "linkcode": 10, "balancesheet": true, "serno": 3, "groupid": 11, "depth": 5, "nodetype": 0 },
+      { "trustid": 1, "code": "AI", "label": "Accrued Interest", "linkcode": 9, "balancesheet": true, "serno": 2, "groupid": 10, "depth": 5, "nodetype": 0 },
+      { "trustid": 1, "code": "OT", "label": "Others", "linkcode": 11, "balancesheet": true, "serno": 2, "groupid": 16, "depth": 5, "nodetype": 0 },
+      { "trustid": 1, "code": "CA", "label": "Company Account", "linkcode": 11, "balancesheet": true, "serno": 1, "groupid": 15, "depth": 5, "nodetype": 0 },
+      { "trustid": 1, "code": "da", "label": "and alsoe create for demo", "linkcode": 19, "balancesheet": true, "serno": 2, "groupid": 33, "depth": 3, "nodetype": 0 },
+      { "trustid": 1, "code": "ad", "label": "done for app demo", "linkcode": 19, "balancesheet": true, "serno": 1, "groupid": 32, "depth": 3, "nodetype": 0 }
+    ];
+
+    this.mytree = this.unflatten(res);
+    console.log(this.mytree);
+  }
+  unflatten(arr) {
+    var tree = [{
+      "trustid": 1, "code": "BalanceSheet", "label": "Application For Demo", "balancesheet": true,
+      "serno": 3, "groupid": 0, "depth": 0, "nodetype": 0, children: []
+    }],
+      mappedArr = {},
+      arrElem,
+      mappedElem;
+
+    console.log(arr.length);
+    // First map the nodes of the array to an object -> create a hash table.
+    for (var i = 0, len = arr.length; i < len; i++) {
+      arrElem = arr[i];
+      mappedArr[arrElem.groupid] = arrElem;
+      mappedArr[arrElem.groupid]['children'] = [];
+      if(arrElem.groupid===arrElem.linkcode){
+        console.log(arrElem.groupid);
+      }
+    }
+console.log(mappedArr);
+
+    for (var groupid in mappedArr) {
+      if (mappedArr.hasOwnProperty(groupid)) {
+        mappedElem = mappedArr[groupid];
+        if (mappedElem.linkcode === 0) {
+          tree[0]['children'].push(mappedElem);
+        }       // If the element is not at the root level, add it to its parent array of children.
+        else if (mappedElem.linkcode != 0) {
+          // if (!mappedArr[mappedElem['linkcode']]) {
+          //   console.log("no parent matched for linkcode", mappedElem.linkcode)
+          // }
+          // if (!mappedArr[mappedElem['linkcode']]['children']) {
+          //   mappedArr[mappedElem['linkcode']]['children'] = [];
+          // }
+          try {
+              mappedArr[mappedElem['linkcode']]['children'].push(mappedElem);
+          } catch (error) {
+            console.error(mappedElem);
+          }
+        
+
+        }
+        // If the element is at the root level, add it to first level elements array.
+        else {
+          console.log("missed",mappedElem);
+        }
+      }
+    }
+    return tree;
+  }
