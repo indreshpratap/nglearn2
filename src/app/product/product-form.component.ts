@@ -17,7 +17,6 @@ export class ProductFormComponent implements OnInit {
         private service:ProductService ) { }
 
     ngOnInit() {
-        let form:NgForm;
        let id =  +this.activated.snapshot.params.id;
        this.product = this.service.getProductDetailById(id);
      }

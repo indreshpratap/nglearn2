@@ -1,0 +1,30 @@
+<h3>New Product Registration Form</h3>
+<form [formGroup]="form" novalidate>
+    <div class=""><b>Name</b><input type="text" formControlName="name">
+   <span *ngIf="form.get('name').errors?.required">Required</span> 
+    
+    </div>
+    <div class=""><b>Category</b><input type="text" formControlName="category">
+   <span *ngIf="form.get('category').errors?.required">Required</span> 
+   <span *ngIf="form.get('category').errors?.nospaceallowed">No space allowed</span> 
+   <span *ngIf="form.get('category').errors?.maxlength">Max length is 
+{{form.get('category').errors?.maxlength?.requiredLength}}       
+</span> 
+<!-- <app-errors [errors]="form.get('category').errors"></app-errors> -->
+    </div>
+    <div class=""><b>Color</b><input type="text" formControlName="color">
+   <!-- <span *ngIf="form.get('color').errors?.nospaceallowed">No space allowed</span>  -->
+   </div>
+<!-- <app-errors [errors]="form.get('color').errors"></app-errors> -->
+    <div class=""><b>Quantity</b><input type="number" formControlName="quantity"></div>
+ 
+  <!-- <span *ngIf="form.controls['description2']?.errors?.email">Not a valid email</span> -->
+<button (click)="doSave()">Save</button>
+</form>
+<pre>
+   Form Valid {{form.valid}}
+  {{form.value|json}} 
+
+  Category Errors
+  {{form.get('category').errors|json}}
+</pre>

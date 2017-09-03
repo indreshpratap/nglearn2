@@ -15,7 +15,7 @@ export class ProductListingComponent implements OnInit {
     cart: any[] = [];
     item = "fsd";
     price = 10;
-   
+
     // prodService: ProductService;
 
     constructor(private productService: ProductService) {
@@ -55,7 +55,9 @@ export class ProductListingComponent implements OnInit {
     }
 
     removeFromCart(data) {
-        let indx = this.findIndex(this.cart, (o) => { return o.id === data.id });
+        let indx = this.findIndex(this.cart, (o) => {
+            return o.id === data.id;
+        });
         // let indx = this.cart.indexOf(data);
         if (indx !== -1) {
             this.cart.splice(indx, 1);
@@ -65,7 +67,7 @@ export class ProductListingComponent implements OnInit {
     private findIndex(elm, closure): number {
         let indx = -1;
         for (var i = 0; i < elm.length; i++) {
-            var matched = closure(elm[i]);
+            var matched = closure(elm[i],"fsd","fds");
             if (matched) {
                 indx = i;
                 break;

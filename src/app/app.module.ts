@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { AuthService } from "app/gaurds/auth.service";
 import { UserGuard } from "app/gaurds/user.gaurd";
 import { AdminGuard } from "app/gaurds/admin.gaurd";
 import { ProductFormComponent } from "app/product/product-form.component";
+import { ProductModelFormComponent } from "app/product/product-model-form.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/products", pathMatch: "full" },
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: "info", component: UserInfoComponent }
     ]
   },
+  {path:"new-product",component:ProductModelFormComponent},
   { path: "**", redirectTo: "/products", pathMatch: "full" },
 ];
 
@@ -55,11 +57,13 @@ const routes: Routes = [
     ProductViewMoreComponent,
     ProductViewSpecComponent,
     UserInfoComponent,
-    ProductFormComponent 
+    ProductFormComponent ,
+    ProductModelFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     // registering routes and importing the Router module
     RouterModule.forRoot(routes)
