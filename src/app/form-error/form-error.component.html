@@ -1,5 +1,6 @@
 <!-- <div *ngIf="errors"> -->
 <span *ngIf="errors?.required">{{label?label:'Field'}} required</span>
+<span *ngIf="errors?.allinputrequired">All input required</span>
 <span *ngIf="errors?.minlength">{{label?label:'Field'}} minimum length error</span>
 <span *ngIf="errors?.nospaceallowed">{{label?label:'Field'}} No space allowed</span>
 <span *ngIf="errors?.pattern">

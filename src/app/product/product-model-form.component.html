@@ -36,7 +36,7 @@
       <input type="text" placeholder="Document name" formControlName="docname"/>
       <input type="text" placeholder="Document no" formControlName="docno"/>
       <button (click)="removeDoc(i)">x</button>
-      {{doc.errors|json}}
+    
        <app-form-error [errors]="doc.errors" label="Doc"></app-form-error> 
       </div>
     </li>

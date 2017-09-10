@@ -89,7 +89,7 @@ export class ProductModelFormComponent implements OnInit {
         this.documents.push(this.fb.group({
             docname: [''],
             docno: ['']
-        }, { validator: Validators.required }));
+        }, { validator: this.allinputrequired }));
     }
 
     removeDoc(indx) {
@@ -103,5 +103,17 @@ export class ProductModelFormComponent implements OnInit {
             let value: string = control.value;
             return / /.test(value) ? { nospaceallowed: true } : null;
         }
+    }
+    allinputrequired(control: FormGroup) {
+    let v =control.value;
+        if (v.docname && v.docno) {
+        return null;
+        }else {
+return { allinputrequired: true };
+        }
+            // let reg= new RegExp(" ");
+           // let value: string = control.value;
+            // return / /.test(value) ? { nospaceallowed: true } : null;
+        // }
     }
 }
