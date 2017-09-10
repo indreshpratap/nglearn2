@@ -1,25 +1,52 @@
 <h3>New Product Registration Form</h3>
 <form [formGroup]="form" novalidate>
-    <div class=""><b>Name</b><input type="text" formControlName="name">
-   <span *ngIf="form.get('name').errors?.required">Required</span> 
-    
+  <div class=""><b>Name</b><input type="text" formControlName="name">
+    <app-form-error [errors]="form.get('name').errors" [msgs]="{pattern:'Only letters,space and  _ allowed'}"></app-form-error>
+  </div>
+  <div class=""><b>Category</b><input type="text" formControlName="category">
+    <app-form-error [errors]="form.get('category').errors" label="Category"></app-form-error>
+  </div>
+  <div class=""><b>Color</b><input type="text" formControlName="color">
+    <!-- <span *ngIf="form.get('color').errors?.nospaceallowed">No space allowed</span>  -->
+    <app-form-error [errors]="form.get('color').errors" label="Color" [msgs]="{pattern:'Only small letters are allowed!'}">
+    </app-form-error>
+  </div>
+  <!-- <app-errors [errors]="form.get('color').errors"></app-errors> -->
+  <div class="">
+    <b>Quantity</b><input type="number" formControlName="quantity">
+    <app-form-error [errors]="form.get('quantity').errors" label="Qty"></app-form-error>
+  </div>
+
+  <div *ngIf="this.form.get('nominee')" formGroupName="nominee">
+    <div class="">
+      <b>Nominee Name</b><input type="text" formControlName="name">
+       <app-form-error [errors]="form.get('nominee.name').errors" label="Nominee name"></app-form-error> 
     </div>
-    <div class=""><b>Category</b><input type="text" formControlName="category">
-   <span *ngIf="form.get('category').errors?.required">Required</span> 
-   <span *ngIf="form.get('category').errors?.nospaceallowed">No space allowed</span> 
-   <span *ngIf="form.get('category').errors?.maxlength">Max length is 
-{{form.get('category').errors?.maxlength?.requiredLength}}       
-</span> 
-<!-- <app-errors [errors]="form.get('category').errors"></app-errors> -->
+    <div class="">
+      <b>Relationship</b><input type="text" formControlName="relationship">
+       <app-form-error [errors]="form.get('nominee.relationship').errors" label="Relationship"></app-form-error> 
     </div>
-    <div class=""><b>Color</b><input type="text" formControlName="color">
-   <!-- <span *ngIf="form.get('color').errors?.nospaceallowed">No space allowed</span>  -->
-   </div>
-<!-- <app-errors [errors]="form.get('color').errors"></app-errors> -->
-    <div class=""><b>Quantity</b><input type="number" formControlName="quantity"></div>
- 
+  </div>
+
+  <hr>
+  <button (click)="addNewDocument()"> Add Document</button>
+  <ul formArrayName="documents">
+    <li *ngFor="let doc of documents.controls;let i=index" > 
+      <div [formGroupName]="i">
+      <input type="text" placeholder="Document name" formControlName="docname"/>
+      <input type="text" placeholder="Document no" formControlName="docno"/>
+      <button (click)="removeDoc(i)">x</button>
+      {{doc.errors|json}}
+       <app-form-error [errors]="doc.errors" label="Doc"></app-form-error> 
+      </div>
+    </li>
+  </ul>
+  <input type="checkbox" (change)="addNominee($event.target.checked)" /> Do you want to Add Nominee?
+  <br>
   <!-- <span *ngIf="form.controls['description2']?.errors?.email">Not a valid email</span> -->
-<button (click)="doSave()">Save</button>
+  <button (click)="setValues()">Set values</button>
+  <button (click)="toogleForm()">Enable/Disable Form</button>
+  <button (click)="doSave()">Save</button>
 </form>
 <pre>
    Form Valid {{form.valid}}

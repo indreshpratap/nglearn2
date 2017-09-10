@@ -21,6 +21,7 @@ import { UserGuard } from "app/gaurds/user.gaurd";
 import { AdminGuard } from "app/gaurds/admin.gaurd";
 import { ProductFormComponent } from "app/product/product-form.component";
 import { ProductModelFormComponent } from "app/product/product-model-form.component";
+import { FormErrorComponent } from './form-error/form-error.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/products", pathMatch: "full" },
@@ -58,7 +59,8 @@ const routes: Routes = [
     ProductViewSpecComponent,
     UserInfoComponent,
     ProductFormComponent ,
-    ProductModelFormComponent
+    ProductModelFormComponent,
+    FormErrorComponent
   ],
   imports: [
     BrowserModule,
