@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 // import { ActivatedRoute } from "@angular/router";
 import { ProductService } from "app/product/product.service";
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl, FormArray } from "@angular/forms";
+import { Observable } from 'rxjs/Observable';
 // import { NgForm } from "@angular/forms";
 
 @Component({
@@ -10,18 +11,28 @@ import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl, FormA
 
 })
 
-export class ProductModelFormComponent implements OnInit {
-
+export class ProductModelFormComponent implements OnInit, AfterViewInit {
     form: FormGroup;
-
+    productList;
     maxlength = 0;
     defaultValues: any = { name: "Shirt", category: "Cloth", quantity: "5", color1: "Green" };
+
     constructor(private service: ProductService, private fb: FormBuilder) { }
 
+    ngAfterViewInit(): void {
+        // this.testObservable();
+        this.testObrWithObserver();
+    }
     ngOnInit() {
         this.maxlength = 6;
         // this.buildForm(defaultValues);
         this.buildByBuilder();
+        this.getProductFromService();
+    }
+
+    getProductFromService() {
+        this.service.getProductByJson().subscribe(data => this.productList = data);
+        this.service.getProductByJson().subscribe(data => console.log("second call", data));
     }
 
     setValues() {
@@ -105,15 +116,52 @@ export class ProductModelFormComponent implements OnInit {
         }
     }
     allinputrequired(control: FormGroup) {
-    let v =control.value;
+        let v = control.value;
         if (v.docname && v.docno) {
-        return null;
-        }else {
-return { allinputrequired: true };
+            return null;
+        } else {
+            return { allinputrequired: true };
         }
-            // let reg= new RegExp(" ");
-           // let value: string = control.value;
-            // return / /.test(value) ? { nospaceallowed: true } : null;
+        // let reg= new RegExp(" ");
+        // let value: string = control.value;
+        // return / /.test(value) ? { nospaceallowed: true } : null;
         // }
+    }
+
+    testObservable() {
+        let arr = [1, 2, 2, 3, 4, 5, 6];
+        let obr$ = Observable.fromEvent(document.getElementById('preobr'), 'mousemove');
+        // .distinctUntilChanged()
+        // .filter((this, (value) => {
+        //     return value === 2;
+        // }));
+        // .map(data => {
+        //     return data * 10;
+        // });
+        obr$.subscribe(
+            (e) => console.log("First subscribed:", e),// success
+            (data) => console.log(data), // error
+            () => console.log("Complete") // complete
+        );
+        // obr$.subscribe(data => console.log("Second subscribed: ", data));
+
+    }
+
+    testObrWithObserver() {
+        let obr$ = Observable.create((observer) => {
+            observer.next(1);
+            setTimeout(() => {
+                observer.next({ test: "fsdsf" });
+            }, 2000);
+            setTimeout(() => {
+                observer.next([{ test: "fsdsf" }]);
+            }, 5000);
+
+            // observer.complete();
+        });
+
+        obr$.subscribe(data => {
+            console.log(data);
+        });
     }
 }

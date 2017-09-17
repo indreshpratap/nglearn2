@@ -20,24 +20,25 @@
   <div *ngIf="this.form.get('nominee')" formGroupName="nominee">
     <div class="">
       <b>Nominee Name</b><input type="text" formControlName="name">
-       <app-form-error [errors]="form.get('nominee.name').errors" label="Nominee name"></app-form-error> 
+      <app-form-error [errors]="form.get('nominee.name').errors" label="Nominee name"></app-form-error>
     </div>
     <div class="">
       <b>Relationship</b><input type="text" formControlName="relationship">
-       <app-form-error [errors]="form.get('nominee.relationship').errors" label="Relationship"></app-form-error> 
+      <app-form-error [errors]="form.get('nominee.relationship').errors" label="Relationship"></app-form-error>
     </div>
   </div>
 
   <hr>
   <button (click)="addNewDocument()"> Add Document</button>
+  <button id="forobrevent"> Trigger Obr</button>
   <ul formArrayName="documents">
-    <li *ngFor="let doc of documents.controls;let i=index" > 
+    <li *ngFor="let doc of documents.controls;let i=index">
       <div [formGroupName]="i">
-      <input type="text" placeholder="Document name" formControlName="docname"/>
-      <input type="text" placeholder="Document no" formControlName="docno"/>
-      <button (click)="removeDoc(i)">x</button>
-    
-       <app-form-error [errors]="doc.errors" label="Doc"></app-form-error> 
+        <input type="text" placeholder="Document name" formControlName="docname" />
+        <input type="text" placeholder="Document no" formControlName="docno" />
+        <button (click)="removeDoc(i)">x</button>
+
+        <app-form-error [errors]="doc.errors" label="Doc"></app-form-error>
       </div>
     </li>
   </ul>
@@ -47,8 +48,12 @@
   <button (click)="setValues()">Set values</button>
   <button (click)="toogleForm()">Enable/Disable Form</button>
   <button (click)="doSave()">Save</button>
+  <button id="+91900">Invalid button id</button>
+
 </form>
-<pre>
+
+{{productList|json}}
+<pre id="preobr">
    Form Valid {{form.valid}}
   {{form.value|json}} 
 

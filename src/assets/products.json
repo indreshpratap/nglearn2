@@ -1,0 +1,31 @@
+[{
+    "id": 1,
+    "name": "Shirt",
+    "description": "this is description of products",
+    "specification": "this is specification of products"
+  },
+  {
+    "id": 2,
+    "name": "Pants",
+    "description": "this is description of products",
+    "specification": "this is specification of products"
+  },
+  {
+    "id": 3,
+    "name": "Shoes",
+    "description": "this is description of products",
+    "specification": "this is specification of products"
+  },
+  {
+    "id": 4,
+    "name": "Jeans",
+    "description": "this is description of products",
+    "specification": "this is specification of products"
+  },
+  {
+    "id": 5,
+    "name": "Jacket",
+    "description": "this is description of products",
+    "specification": "this is specification of products"
+  }
+]
