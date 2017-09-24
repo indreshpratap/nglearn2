@@ -22,6 +22,8 @@ import { AdminGuard } from "app/gaurds/admin.gaurd";
 import { ProductFormComponent } from "app/product/product-form.component";
 import { ProductModelFormComponent } from "app/product/product-model-form.component";
 import { FormErrorComponent } from './form-error/form-error.component';
+import { MultiplyerPipe, LowercasePipe } from 'app/pipes/multiplyer.pipe';
+import { MyHightlightDirective, FocusHightlightDirective } from 'app/directive/myhighlight.directive';
 
 const routes: Routes = [
   { path: "", redirectTo: "/products", pathMatch: "full" },
@@ -60,7 +62,11 @@ const routes: Routes = [
     UserInfoComponent,
     ProductFormComponent ,
     ProductModelFormComponent,
-    FormErrorComponent
+    FormErrorComponent,
+    MultiplyerPipe ,
+    LowercasePipe,
+    MyHightlightDirective,
+    FocusHightlightDirective
   ],
   imports: [
     BrowserModule,

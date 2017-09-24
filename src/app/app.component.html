@@ -7,25 +7,17 @@
 <button (mouseenter)="toogle()">Toogle</button>
 <h3>Property Binding</h3>
 
-Email <input
-  [disabled]="disableEmail"
-  type="email"
-  [value]="email"
-  class="test"
-  [class.bold]="true"
-  [class.required]="true"
-  [ngClass]="{full:true,bg:1==='1'}"
-/> 
+Email <input [disabled]="disableEmail" type="email" [value]="email" class="test" [class.bold]="true" [class.required]="true"
+  [ngClass]="{full:true,bg:1==='1'}" />
 <!-- 
 <p [style.backgroundColor]="'green'" [style.color]="'white'"
   [ngStyle]="{width:paraWidth,height:'300px'}"
 >This is my para</p>
 -->
 <h3>Structure</h3>
-<button (click)="toogleWarning()">Toogle Warning</button>
-{{warningflag}}
+<button (click)="toogleWarning()">Toogle Warning</button> {{warningflag}}
 <div *ngIf="warningflag">
-This is warning
+  This is warning
 </div>
 
 <div *ngIf="!warningflag">
@@ -34,12 +26,12 @@ This is warning
 
 For loop
 <ul *ngFor="let color of colors;let i=index;let odd=odd;let even=even;let first=first;let last=last;">
-  <li>{{i+1}} - {{color}} Odd:{{odd}}  Even:{{even}} First: {{first}} Last: {{last}}</li>
+  <li>{{i+1}} - {{color}} Odd:{{odd}} Even:{{even}} First: {{first}} Last: {{last}}</li>
 </ul>
 
 For loop
 <ul *ngFor="let item of items;let i=index;let odd=odd;let even=even;let first=first;let last=last;">
-  <li>{{i}} - {{item.name}} {{item.price.total}} Odd:{{odd}}  Even:{{even}} First: {{first}} Last: {{last}}</li>
+  <li>{{i}} - {{item.name}} {{item.price.total}} Odd:{{odd}} Even:{{even}} First: {{first}} Last: {{last}}</li>
 </ul>
 
 
